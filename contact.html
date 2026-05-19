@@ -12,7 +12,6 @@
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-
     body {
       height: 100vh;
       display: flex;
@@ -38,6 +37,12 @@
       z-index: 10;
     }
 
+    .navbar img {
+      width: 100px;
+      height: 50px;
+      object-fit: contain;
+    }
+
     .logo {
       color: white;
       font-size: 24px;
@@ -61,10 +66,10 @@
     }
 
     .nav-links li a:hover {
-      color: #00ffd5; /* Matches the glowing circle */
+      color: #00ffd5;
     }
-    /* --------------------- */
 
+    /* --- Background Circles --- */
     .background-circle {
       position: absolute;
       border-radius: 50%;
@@ -90,14 +95,11 @@
     }
 
     @keyframes float {
-      from {
-        transform: translateY(0px);
-      }
-      to {
-        transform: translateY(30px);
-      }
+      from { transform: translateY(0px); }
+      to { transform: translateY(30px); }
     }
 
+    /* --- Form Styles --- */
     .form-container {
       width: 380px;
       padding: 35px;
@@ -172,48 +174,89 @@
       color: #fff;
     }
 
-    img{
-      width: 100px;
-      height: 40px;
-    }
     /* --- Footer Styles --- */
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 10;
-  color: white;
-}
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 10;
+      color: white;
+    }
 
-.footer-text {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-}
+    .footer-text {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
 
-.footer-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+    .footer-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
 
-.footer-links li a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.3s;
-}
+    .footer-links li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
 
-.footer-links li a:hover {
-  color: #ff4ecd; 
-}
+    .footer-links li a:hover {
+      color: #ff4ecd; 
+    }
+
+    /* --- Mobile Responsive Design (Must be at the very bottom!) --- */
+    @media (max-width: 768px) {
+      body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .navbar {
+        position: relative; 
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .form-container {
+        width: 90%;
+        max-width: 350px;
+        padding: 30px 20px;
+        margin: 40px auto; 
+      }
+
+      .footer {
+        position: relative; 
+        flex-direction: column;
+        padding: 25px 15px;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .footer-links {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
   </style>
 </head>
 <body>
@@ -229,6 +272,7 @@
       </ul>
     </nav>
   </header>
+
   <div class="background-circle circle1"></div>
   <div class="background-circle circle2"></div>
 
@@ -253,16 +297,17 @@
       <div class="message" id="successMessage"></div>
     </form>
   </div>
+
   <footer class="footer">
-  <div class="footer-text">
-    &copy; 2026 MyBrand. All rights reserved.
-  </div>
-  <ul class="footer-links">
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="#">Terms of Service</a></li>
-    <li><a href="#">Twitter</a></li>
-  </ul>
-</footer>
+    <div class="footer-text">
+      &copy; 2026 MyBrand. All rights reserved.
+    </div>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Twitter</a></li>
+    </ul>
+  </footer>
 
   <script>
     const form = document.getElementById('myForm');
