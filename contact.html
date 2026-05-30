@@ -1,328 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unique Form Design</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      overflow: hidden;
-    }
+<title>Contact Us</title>
 
-    /* --- Navbar Styles --- */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 10;
-    }
+<style>
 
-    .navbar img {
-      width: 100px;
-      height: 50px;
-      object-fit: contain;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    .logo {
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#6a11cb,#2575fc);
+  overflow-x:hidden;
+  position:relative;
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-    .nav-links li a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+  padding:120px 20px 100px;
+}
 
-    .nav-links li a:hover {
-      color: #00ffd5;
-    }
+/* ================= NAVBAR ================= */
 
-    /* --- Background Circles --- */
-    .background-circle {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.5;
-      animation: float 6s infinite alternate ease-in-out;
-    }
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:15px 60px;
 
-    .circle1 {
-      width: 250px;
-      height: 250px;
-      background: #ff4ecd;
-      top: 10%;
-      left: 10%;
-    }
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-    .circle2 {
-      width: 300px;
-      height: 300px;
-      background: #00ffd5;
-      bottom: 10%;
-      right: 10%;
-    }
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
 
-    @keyframes float {
-      from { transform: translateY(0px); }
-      to { transform: translateY(30px); }
-    }
+  border-bottom:1px solid rgba(255,255,255,0.2);
 
-    /* --- Form Styles --- */
-    .form-container {
-      width: 380px;
-      padding: 35px;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.2);
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
+  z-index:1000;
+}
 
-    .form-container h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
+.navbar img{
+  width:70px;
+  height:auto;
+}
 
-    .input-box {
-      margin-bottom: 20px;
-      position: relative;
-    }
+nav{
+  margin-left:auto;
+}
 
-    .input-box input,
-    .input-box textarea {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      font-size: 15px;
-      outline: none;
-      transition: 0.3s;
-    }
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
 
-    .input-box input::placeholder,
-    .input-box textarea::placeholder {
-      color: rgba(255,255,255,0.7);
-    }
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
 
-    .input-box input:focus,
-    .input-box textarea:focus {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.02);
-    }
+.nav-links a:hover{
+  color:#00ffd5;
+}
 
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(45deg, #ff4ecd, #00ffd5);
-      color: #111;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
 
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
+.menu-toggle .bar{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:5px;
+}
 
-    .message {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 14px;
-      color: #fff;
-    }
+/* ================= BACKGROUND CIRCLES ================= */
 
-    /* --- Footer Styles --- */
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 15px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 10;
-      color: white;
-    }
+.background-circle{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px);
+  opacity:0.5;
+  animation:float 6s infinite alternate ease-in-out;
+}
 
-    .footer-text {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.8);
-    }
+.circle1{
+  width:250px;
+  height:250px;
+  background:#ff4ecd;
+  top:10%;
+  left:10%;
+}
 
-    .footer-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
+.circle2{
+  width:300px;
+  height:300px;
+  background:#00ffd5;
+  bottom:10%;
+  right:10%;
+}
 
-    .footer-links li a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+@keyframes float{
 
-    .footer-links li a:hover {
-      color: #ff4ecd; 
-    }
+  from{
+    transform:translateY(0);
+  }
 
-    /* --- Mobile Responsive Design (Must be at the very bottom!) --- */
-    @media (max-width: 768px) {
-      body {
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+  to{
+    transform:translateY(30px);
+  }
 
-      .navbar {
-        position: relative; 
-        flex-direction: column;
-        padding: 20px 15px;
-        gap: 15px;
-      }
-      
-      .nav-links {
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+}
 
-      .form-container {
-        width: 90%;
-        max-width: 350px;
-        padding: 30px 20px;
-        margin: 40px auto; 
-      }
+/* ================= FORM ================= */
 
-      .footer {
-        position: relative; 
-        flex-direction: column;
-        padding: 25px 15px;
-        gap: 12px;
-        text-align: center;
-      }
+.form-container{
 
-      .footer-links {
-        gap: 15px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-    }
-  </style>
+  width:100%;
+  max-width:380px;
+
+  padding:35px;
+
+  border-radius:25px;
+
+  background:rgba(255,255,255,0.15);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  position:relative;
+  z-index:2;
+
+  color:white;
+}
+
+.form-container h2{
+  text-align:center;
+  margin-bottom:25px;
+  font-size:28px;
+}
+
+.input-box{
+  margin-bottom:18px;
+}
+
+.input-box input,
+.input-box textarea{
+
+  width:100%;
+  padding:14px;
+
+  border:none;
+  outline:none;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.2);
+
+  color:white;
+}
+
+.input-box input::placeholder,
+.input-box textarea::placeholder{
+  color:rgba(255,255,255,.8);
+}
+
+.input-box input:focus,
+.input-box textarea:focus{
+  background:rgba(255,255,255,0.3);
+}
+
+.submit-btn{
+
+  width:100%;
+  padding:14px;
+
+  border:none;
+  border-radius:12px;
+
+  background:linear-gradient(
+  45deg,
+  #ff4ecd,
+  #00ffd5
+  );
+
+  color:white;
+
+  font-size:16px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.submit-btn:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,0.3);
+}
+
+.message{
+
+  margin-top:15px;
+
+  text-align:center;
+
+  color:white;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+  position:fixed;
+
+  bottom:0;
+  left:0;
+
+  width:100%;
+
+  padding:15px;
+
+  text-align:center;
+
+  background:rgba(255,255,255,0.1);
+
+  backdrop-filter:blur(12px);
+
+  border-top:1px solid rgba(255,255,255,0.2);
+
+  color:white;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+  body{
+
+    display:block;
+
+    padding:100px 15px 30px;
+
+  }
+
+  .navbar{
+
+    padding:15px 20px;
+  }
+
+  .navbar img{
+
+    width:55px;
+  }
+
+  .menu-toggle{
+
+    display:flex;
+  }
+
+  nav{
+
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+  }
+
+  .nav-links{
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(15px);
+  }
+
+  .nav-links.active{
+
+    display:flex;
+  }
+
+  .form-container{
+
+    max-width:350px;
+
+    margin:120px auto;
+  }
+
+  .footer{
+
+    position:static;
+
+    margin-bottom:0px;
+  }
+
+  .circle1{
+
+    width:150px;
+    height:150px;
+  }
+
+  .circle2{
+
+    width:180px;
+    height:180px;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <header class="navbar">
-    <img src="logo.png" alt="logo">
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="navbar">
 
-  <div class="background-circle circle1"></div>
-  <div class="background-circle circle2"></div>
+<img src="logo.png" alt="Logo">
 
-  <div class="form-container">
-    <h2>Contact Us</h2>
+<nav>
 
-    <form id="myForm">
-      <div class="input-box">
-        <input type="text" id="name" placeholder="Enter your name" required>
-      </div>
+<ul class="nav-links" id="nav-links">
 
-      <div class="input-box">
-        <input type="email" id="email" placeholder="Enter your email" required>
-      </div>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Contact</a></li>
 
-      <div class="input-box">
-        <textarea id="message" rows="4" placeholder="Write your message" required></textarea>
-      </div>
+</ul>
 
-      <button type="submit" class="submit-btn">Send Message</button>
+</nav>
 
-      <div class="message" id="successMessage"></div>
-    </form>
-  </div>
+<div class="menu-toggle" id="mobile-menu">
 
-  <footer class="footer">
-    <div class="footer-text">
-      &copy; 2026 MyBrand. All rights reserved.
-    </div>
-    <ul class="footer-links">
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms of Service</a></li>
-      <li><a href="#">Twitter</a></li>
-    </ul>
-  </footer>
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
 
-  <script>
-    const form = document.getElementById('myForm');
-    const successMessage = document.getElementById('successMessage');
+</div>
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
+</header>
 
-      const name = document.getElementById('name').value;
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
 
-      successMessage.innerHTML = `✨ Thank you, ${name}! Your message has been sent successfully.`;
+<div class="form-container">
 
-      form.reset();
-    });
-  </script>
+<h2>Contact Us</h2>
+
+<form id="myForm">
+
+<div class="input-box">
+<input type="text" id="name" placeholder="Enter your name" required>
+</div>
+
+<div class="input-box">
+<input type="email" id="email" placeholder="Enter your email" required>
+</div>
+
+<div class="input-box">
+<textarea id="message" rows="4" placeholder="Write your message" required></textarea>
+</div>
+
+<button type="submit" class="submit-btn">
+Send Message
+</button>
+
+<div class="message" id="successMessage"></div>
+
+</form>
+
+</div>
+
+<footer class="footer">
+
+© 2026 FreshCoffee. All rights reserved.
+
+</footer>
+
+<script>
+
+const form =
+document.getElementById("myForm");
+
+const successMessage =
+document.getElementById("successMessage");
+
+form.addEventListener("submit",(e)=>{
+
+  e.preventDefault();
+
+  const name =
+  document.getElementById("name").value;
+
+  successMessage.innerHTML =
+  `✨ Thank you, ${name}! Your message has been sent successfully.`;
+
+  form.reset();
+
+});
+
+const menuToggle =
+document.getElementById("mobile-menu");
+
+const navLinks =
+document.getElementById("nav-links");
+
+menuToggle.addEventListener("click",()=>{
+
+  navLinks.classList.toggle("active");
+
+});
+
+</script>
 
 </body>
 </html>
